@@ -1,11 +1,18 @@
 <script>
-  export let manifest;
+  import { onMount } from "svelte";
 
-  console.log(manifest);
+  let manifest = null;
+  onMount(() => {
+    import("/data/manifest.js").then((m) => (manifest = m.default));
+  });
 </script>
 
-<div>MENS-MAKER</div>
+{#if manifest === null}
+  <p>waiting for the promise to resolve...</p>
+{:else}
+  <p>{JSON.stringify(manifest, null, 2)}</p>
+{/if}
 
 <style>
-  div { color: blue; }
+  p { color: blue; }
 </style>
