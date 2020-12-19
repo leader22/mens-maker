@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "setup": "node ./script/setup.js",
     "build": "rollup -c",
     "dev": "rollup -c -w",
     "start": "sirv public"

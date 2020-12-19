@@ -14,9 +14,11 @@ const svgOutDir = "./public/data";
 (async () => {
   const manifest = {
     // [$partsName]: {
-    //   $zIndex,
-    //   [$partsId]: {
-    //     [$partsCls]: $defaultColor
+    //   zIndex,
+    //   items: {
+    //     [$partsId]: {
+    //       [$partsCls]: $defaultColor
+    //     }
     //   }
     // }
   };
@@ -26,9 +28,9 @@ const svgOutDir = "./public/data";
 
   const partsDirs = await fs.readdir(path.resolve(svgInDir));
   for (const partsDir of partsDirs) {
-    const [$zIndex, partsName] = partsDir.split("_");
+    const [zIndex, partsName] = partsDir.split("_");
 
-    const parts = { $zIndex };
+    const parts = { zIndex, items: {} };
 
     const partsItems = await fs.readdir(path.resolve(svgInDir, partsDir));
     await fs.mkdir(path.resolve(svgOutDir, partsDir));
@@ -37,7 +39,7 @@ const svgOutDir = "./public/data";
 
       const svg = await fs.readFile(path.resolve(svgInDir, partsDir, partsItem), "utf8");
       const parsed = parseSvg(svg);
-      parts[partsId] = { ...parsed.defaultStyles };
+      parts.items[partsId] = { ...parsed.defaultStyles };
 
       await fs.writeFile(
         path.resolve(svgOutDir, partsDir, partsItem),
