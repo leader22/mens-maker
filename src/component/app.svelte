@@ -1,4 +1,5 @@
 <script>
+  import Renderer from "./renderer.svelte";
   import { getInitialState } from "../state.js";
   export let manifest;
 
@@ -7,7 +8,7 @@
   const setItem = (partsName, itemId) => {
     state.settings[partsName].id = itemId;
     // reset to defaults
-    state.settings[partsName].colors = manifest[partsName].items[itemId];
+    state.settings[partsName].colors = manifest[partsName][itemId];
   };
 
   const setColor = (partsName, colorId, color) => {
@@ -20,17 +21,19 @@
   }
 </script>
 
+<Renderer settings={state.settings} />
+
 {#each Object.entries(manifest) as [partsName, parts]}
   <section>
     <h2>{partsName}</h2>
     <div>
-      {#each Object.entries(parts.items) as [itemId, item]}
+      {#each Object.entries(parts) as [itemId, item]}
         <button
           on:click={() => setItem(partsName, itemId)}
           class:selected={state.settings[partsName].id === itemId}
         >
           <img
-            src="/data/{parts.zIndex}_{partsName}/{itemId}.svg"
+            src="/data/{partsName}/{itemId}.svg"
             alt=""
             height="20"
             width="auto"

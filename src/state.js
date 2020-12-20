@@ -1,36 +1,36 @@
 export const getInitialState = (manifest) => {
   const settings = {
-    face: {
+    "1_face": {
       id: "1",
-      colors: { ...manifest["face"].items["1"] },
+      colors: { ...manifest["1_face"]["1"] },
     },
-    clothes: {
+    "2_clothes": {
       id: "1",
-      colors: { ...manifest["clothes"].items["1"] },
+      colors: { ...manifest["2_clothes"]["1"] },
     },
-    mouth: {
+    "3_mouth": {
       id: "1",
-      colors: { ...manifest["mouth"].items["1"] },
+      colors: { ...manifest["3_mouth"]["1"] },
     },
-    eyes: {
+    "4_eyes": {
       id: "1",
-      colors: { ...manifest["eyes"].items["1"] },
+      colors: { ...manifest["4_eyes"]["1"] },
     },
-    beard: {
+    "5_beard": {
       id: "1",
-      colors: { ...manifest["beard"].items["1"] },
+      colors: { ...manifest["5_beard"]["1"] },
     },
-    eyebrows: {
+    "6_eyebrows": {
       id: "1",
-      colors: { ...manifest["eyebrows"].items["1"] },
+      colors: { ...manifest["6_eyebrows"]["1"] },
     },
-    hair: {
+    "7_hair": {
       id: "1",
-      colors: { ...manifest["hair"].items["1"] },
+      colors: { ...manifest["7_hair"]["1"] },
     },
-    item: {
+    "8_item": {
       id: "1",
-      colors: { ...manifest["item"].items["1"] },
+      colors: { ...manifest["8_item"]["1"] },
     },
   };
 
