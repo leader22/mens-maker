@@ -1,38 +1,54 @@
-export const getInitialState = (manifest) => {
-  const settings = {
-    "1_face": {
-      id: "1",
-      colors: { ...manifest["1_face"]["1"] },
-    },
-    "2_clothes": {
-      id: "1",
-      colors: { ...manifest["2_clothes"]["1"] },
-    },
-    "3_mouth": {
-      id: "1",
-      colors: { ...manifest["3_mouth"]["1"] },
-    },
-    "4_eyes": {
-      id: "1",
-      colors: { ...manifest["4_eyes"]["1"] },
-    },
-    "5_beard": {
-      id: "1",
-      colors: { ...manifest["5_beard"]["1"] },
-    },
-    "6_eyebrows": {
-      id: "1",
-      colors: { ...manifest["6_eyebrows"]["1"] },
-    },
-    "7_hair": {
-      id: "1",
-      colors: { ...manifest["7_hair"]["1"] },
-    },
-    "8_item": {
-      id: "1",
-      colors: { ...manifest["8_item"]["1"] },
-    },
+import { writable } from "svelte/store";
+
+export const createStore = (manifest) => {
+  // split these to re-render separately
+  const partsSettings = writable({
+    "1_face": "1",
+    "2_clothes": "1",
+    "3_mouth": "1",
+    "4_eyes": "1",
+    "5_beard": "1",
+    "6_eyebrows": "1",
+    "7_hair": "1",
+    "8_item": "1",
+  });
+  const colorsSettings = writable({
+    "1_face": { ...manifest["1_face"]["1"] },
+    "2_clothes": { ...manifest["2_clothes"]["1"] },
+    "3_mouth": { ...manifest["3_mouth"]["1"] },
+    "4_eyes": { ...manifest["4_eyes"]["1"] },
+    "5_beard": { ...manifest["5_beard"]["1"] },
+    "6_eyebrows": { ...manifest["6_eyebrows"]["1"] },
+    "7_hair": { ...manifest["7_hair"]["1"] },
+    "8_item": { ...manifest["8_item"]["1"] },
+  });
+
+  const setItem = (partsName, itemId) => {
+    partsSettings.update((state) => {
+      state[partsName] = itemId;
+      return { ...state };
+    });
+    // reset to defaults
+    colorsSettings.update((state) => {
+      state[partsName] = manifest[partsName][itemId];
+      return { ...state };
+    });
   };
 
-  return { settings };
+  const setColor = (partsName, colorId, color) => {
+    colorsSettings.update((state) => {
+      state[partsName][colorId] = color;
+      return { ...state };
+    });
+  };
+
+  return {
+    // states
+    partsSettings,
+    colorsSettings,
+
+    // actions
+    setItem,
+    setColor,
+  };
 };
