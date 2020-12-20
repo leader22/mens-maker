@@ -16,7 +16,7 @@
           class:selected={$partsSettings[partsName] === itemId}
         >
           <img
-            src="/data/{partsName}/{itemId}.svg"
+            src="./data/{partsName}/{itemId}.svg"
             alt=""
             height="40"
             width="auto"

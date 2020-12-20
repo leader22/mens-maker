@@ -1,3 +1,3 @@
-import Main from "./main.svelte";
+import App from "./component/app.svelte";
 
-new Main({ target: document.body });
+new App({ target: document.body });

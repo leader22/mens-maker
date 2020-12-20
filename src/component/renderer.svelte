@@ -5,7 +5,7 @@
   partsSettings.subscribe((state) => {
     svgsPromise = Promise.all(
       Object.entries(state).map(([partsName, id]) => 
-        fetch(`/data/${partsName}/${id}.svg`)
+        fetch(`./data/${partsName}/${id}.svg`)
           .then((res) => res.text())
           .then((svg) => ({ svg, partsName }))
       )

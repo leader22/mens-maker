@@ -5,6 +5,7 @@ const csstree = require("css-tree");
 
 const svgInDir = "./data";
 const svgOutDir = "./public/data";
+const manifestOutDir = "./src";
 
 // このスクリプト = (最適化前SVG) => 最適化後SVG + マニフェスト
 // - SVGはデフォルトで色の指定がある + よくわからない要素が残ってる
@@ -47,7 +48,7 @@ const svgOutDir = "./public/data";
   }
 
   await fs.writeFile(
-    path.resolve(svgOutDir, "manifest.js"),
+    path.resolve(manifestOutDir, "manifest.js"),
     `export default ${JSON.stringify(manifest)};`,
     "utf8"
   );
