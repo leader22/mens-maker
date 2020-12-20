@@ -18,7 +18,7 @@
           <img
             src="/data/{partsName}/{itemId}.svg"
             alt=""
-            height="20"
+            height="40"
             width="auto"
           />
         </button>
@@ -29,8 +29,8 @@
           <input
             type="color"
             value={color}
-            on:change={
-            ({ currentTarget: { value } }) => setColor(partsName, colorId, value)
+            on:input={
+              ({ currentTarget: { value } }) => setColor(partsName, colorId, value)
             }
           />
         {/each}
