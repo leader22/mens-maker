@@ -63,11 +63,17 @@ const parseSvg = (svgStr) => {
   // remove unknown useless group
   $svg.children("g").remove();
 
-  // then find path.cls for color change
+  // then find path.cls to change color
   const validClassNames = new Set();
-  $svg.find("path").each((_, el) => {
-    const cls = $(el).attr("class");
+  // almost all are path, 0_bg is rect
+  $svg.find("path, rect").each((_, el) => {
+    const $el = $(el);
+
+    const cls = $el.attr("class");
     cls && validClassNames.add(cls);
+
+    // remove useless style
+    $el.removeAttr("transform");
   });
 
   // pick default colors

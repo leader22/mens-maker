@@ -3,6 +3,7 @@ import { writable } from "svelte/store";
 export const createStore = (manifest) => {
   // split these to re-render separately
   const partsSettings = writable({
+    "0_bg": "1",
     "1_face": "1",
     "2_clothes": "1",
     "3_mouth": "1",
@@ -13,6 +14,7 @@ export const createStore = (manifest) => {
     "8_item": "1",
   });
   const colorsSettings = writable({
+    "0_bg": { ...manifest["0_bg"]["1"] },
     "1_face": { ...manifest["1_face"]["1"] },
     "2_clothes": { ...manifest["2_clothes"]["1"] },
     "3_mouth": { ...manifest["3_mouth"]["1"] },

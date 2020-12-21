@@ -6,7 +6,7 @@
   {@html `
   <style>
     ${Object.entries(colors).map(([cls, color]) => `
-      #svg-${partsName} svg path.${cls} { fill: ${color}; }
+      #svg-${partsName} svg .${cls} { fill: ${color}; }
     `.trim()).join("")}
   </style>
   `}
