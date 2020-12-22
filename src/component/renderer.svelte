@@ -1,5 +1,6 @@
 <script>
   export let partsSettings;
+  export let colorsSettings;
 
   let svgsPromise;
   partsSettings.subscribe((state) => {
@@ -12,6 +13,16 @@
     );
   });
 </script>
+
+{#each Object.entries($colorsSettings) as [partsName, colors]}
+  {@html `
+  <style>
+    ${Object.entries(colors).map(([cls, color]) => `
+      #svg-${partsName} svg .${cls} { fill: ${color}; }
+    `.trim()).join("")}
+  </style>
+  `}
+{/each}
 
 <div class="stage">
   {#await svgsPromise}
@@ -28,8 +39,8 @@
 <style>
   .stage {
     position: relative;
-    height: 40vh;
-    width: 40vh;
+    height: 20vh;
+    width: 20vh;
     margin: 0 auto;
   }
 

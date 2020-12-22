@@ -3,7 +3,6 @@
   import { createStore } from "../state.js";
   import Renderer from "./renderer.svelte";
   import Controller from "./controller.svelte";
-  import Style from "./style.svelte";
 
   const {
     partsSettings,
@@ -16,8 +15,10 @@
 <h1>Mens Maker</h1>
 
 <main>
-  <Style {colorsSettings} />
-  <Renderer {partsSettings} />
+  <Renderer
+    {partsSettings}
+    {colorsSettings}
+  />
 
   <Controller
     {manifest}
