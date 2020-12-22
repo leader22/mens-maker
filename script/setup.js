@@ -34,7 +34,7 @@ const manifestOutDir = "./src";
       const [partsId] = partsItem.split(".");
 
       const svg = await fs.readFile(path.resolve(svgInDir, partsDir, partsItem), "utf8");
-      const parsed = parseSvg(svg);
+      const parsed = parseSvg(svg, `${partsDir}/${partsItem}`);
       parts[partsId] = { ...parsed.defaultStyles };
 
       await fs.writeFile(
@@ -54,7 +54,7 @@ const manifestOutDir = "./src";
   );
 })();
 
-const parseSvg = (svgStr) => {
+const parseSvg = (svgStr, debugLabel) => {
   const $ = cheerio.load(svgStr);
 
   // html > head+(body > svg)
@@ -91,7 +91,12 @@ const parseSvg = (svgStr) => {
           if (decl.property !== "fill")
             return this.skip;
 
-          defaultStyles[selector.name] = csstree.generate(decl.value);
+          const color  = csstree.generate(decl.value);
+          // color format must be #aaaaaa, not #aaa, red, ...etc
+          if (/^#[0-9a-fA-F]{6}$/.test(color) === false)
+            console.warn(`Invalid format: ${color} in ${debugLabel}`);
+
+          defaultStyles[selector.name] = color;
         }
       });
     },
