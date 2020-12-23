@@ -1,4 +1,5 @@
 <script>
+  import { partsDisplaySettings } from "../constants.js";
   export let manifest;
   export let partsSettings;
   export let colorsSettings;
@@ -10,10 +11,12 @@
   <section>
     <h2>{partsName}</h2>
     <div>
-      <button
-        on:click={() => setItem(partsName, null)}
-        class:selected={$partsSettings[partsName] === null}
-      >x</button>
+      {#if partsDisplaySettings[partsName].nullable}
+        <button
+          on:click={() => setItem(partsName, null)}
+          class:selected={$partsSettings[partsName] === null}
+        >x</button>
+      {/if}
       {#each Object.entries(parts) as [itemId, item]}
         <button
           on:click={() => setItem(partsName, itemId)}
