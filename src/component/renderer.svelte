@@ -2,34 +2,40 @@
   export let partsSettings;
   export let colorsSettings;
 
-  let svgsPromise;
-  partsSettings.subscribe((state) => {
+  let svgsPromise = new Promise(() => {});
+  partsSettings.subscribe((settings) => {
     svgsPromise = Promise.all(
-      Object.entries(state).map(([partsName, id]) => 
+      Object.entries(settings).map(([partsName, id]) => 
         fetch(`./data/${partsName}/${id}.svg`)
-          .then((res) => res.text())
-          .then((svg) => ({ svg, partsName }))
+        .then((res) => res.text())
+        .then((svg) => ({ svg, partsName }))
       )
     );
   });
-</script>
 
-{#each Object.entries($colorsSettings) as [partsName, colors]}
-  {@html `
-  <style>
-    ${Object.entries(colors).map(([cls, color]) => `
-      #svg-${partsName} svg .${cls} { fill: ${color}; }
-    `.trim()).join("")}
-  </style>
-  `}
-{/each}
+  const colorize = ($el, colorsSettings) => {
+    const applyColors = ($svgWrapper, settings) => {
+      for (const [cls, color] of Object.entries(settings)) {
+        for (const $el of $svgWrapper.querySelectorAll(`path.${cls}, rect.${cls}`)) {
+          $el.style.fill = color;
+        }
+      }
+    };
+
+    applyColors($el, colorsSettings);
+
+    return {
+      update: (settings) => applyColors($el, settings),
+    };
+  };
+</script>
 
 <div class="stage">
   {#await svgsPromise}
     <div>Loading...</div>
   {:then svgs}
     {#each svgs as { svg, partsName }}
-      <div id="svg-{partsName}">
+      <div use:colorize={$colorsSettings[partsName]}>
         {@html svg}
       </div>
     {/each}
