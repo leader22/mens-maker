@@ -10,6 +10,10 @@
   <section>
     <h2>{partsName}</h2>
     <div>
+      <button
+        on:click={() => setItem(partsName, null)}
+        class:selected={$partsSettings[partsName] === null}
+      >x</button>
       {#each Object.entries(parts) as [itemId, item]}
         <button
           on:click={() => setItem(partsName, itemId)}

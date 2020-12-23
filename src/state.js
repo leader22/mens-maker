@@ -8,10 +8,10 @@ export const createStore = (manifest) => {
     "2_clothes": "1",
     "3_mouth": "1",
     "4_eyes": "1",
-    "5_beard": "1",
+    "5_beard": null,
     "6_eyebrows": "1",
     "7_hair": "1",
-    "8_item": "1",
+    "8_item": null,
   });
   const colorsSettings = writable({
     "0_bg": { ...manifest["0_bg"]["1"] },
@@ -32,7 +32,7 @@ export const createStore = (manifest) => {
     });
     // reset to defaults
     colorsSettings.update((state) => {
-      state[partsName] = manifest[partsName][itemId];
+      state[partsName] = itemId === null ? {} : manifest[partsName][itemId];
       return { ...state };
     });
   };

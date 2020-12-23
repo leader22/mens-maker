@@ -4,13 +4,18 @@
 
   let svgsPromise = new Promise(() => {});
   partsSettings.subscribe((settings) => {
-    svgsPromise = Promise.all(
-      Object.entries(settings).map(([partsName, id]) => 
+    const svgsPromise_ = [];
+    for (const [partsName, id] of Object.entries(settings)) {
+      if (id === null) continue;
+
+      svgsPromise_.push(
         fetch(`./data/${partsName}/${id}.svg`)
-        .then((res) => res.text())
-        .then((svg) => ({ svg, partsName }))
-      )
-    );
+          .then((res) => res.text())
+          .then((svg) => ({ svg, partsName }))
+      );
+    }
+
+    svgsPromise = Promise.all(svgsPromise_);
   });
 
   const colorize = ($el, colorsSettings) => {
