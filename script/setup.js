@@ -91,7 +91,15 @@ const parseSvg = (svgStr, debugLabel) => {
           if (decl.property !== "fill")
             return this.skip;
 
-          const color  = csstree.generate(decl.value);
+          let color = csstree.generate(decl.value);
+
+          // convert color format #abc -> #aabbcc
+          if (/^#[0-9a-fA-F]{3}$/.test(color))
+            color = "#"
+              + color.charAt(1) + color.charAt(1)
+              + color.charAt(2) + color.charAt(2)
+              + color.charAt(3) + color.charAt(3);
+
           // color format must be #aaaaaa, not #aaa, red, ...etc
           if (/^#[0-9a-fA-F]{6}$/.test(color) === false)
             console.warn(`Invalid format: ${color} in ${debugLabel}`);
