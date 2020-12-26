@@ -1,6 +1,7 @@
 <script>
   export let partsSettings;
   export let colorsSettings;
+  export let svgContainer;
 
   let svgsPromise = new Promise(() => {});
   partsSettings.subscribe((settings) => {
@@ -39,11 +40,13 @@
   {#await svgsPromise}
     <div>Loading...</div>
   {:then svgs}
-    {#each svgs as { svg, partsName }}
-      <div use:colorize={$colorsSettings[partsName]}>
-        {@html svg}
-      </div>
-    {/each}
+    <div bind:this={svgContainer.current}>
+      {#each svgs as { svg, partsName }}
+        <div use:colorize={$colorsSettings[partsName]}>
+          {@html svg}
+        </div>
+      {/each}
+    </div>
   {/await}
 </div>
 
