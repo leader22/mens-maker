@@ -33,5 +33,3 @@ export const download = (href, name) => {
   $a.click();
   $a.remove();
 };
-
-export const toPartsLabel = (partsName) => partsName.split("_")[1];

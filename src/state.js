@@ -1,4 +1,4 @@
-import { writable } from "svelte/store";
+import { writable, get } from "svelte/store";
 
 export const createStore = (manifest) => {
   // split these to re-render separately
@@ -26,6 +26,8 @@ export const createStore = (manifest) => {
   });
 
   const setItem = (partsName, itemId) => {
+    if (get(partsSettings)[partsName] === itemId) return;
+
     partsSettings.update((state) => {
       state[partsName] = itemId;
       return { ...state };
@@ -38,6 +40,8 @@ export const createStore = (manifest) => {
   };
 
   const setColor = (partsName, colorId, color) => {
+    if (get(colorsSettings)[partsName][colorId] === color) return;
+
     colorsSettings.update((state) => {
       state[partsName][colorId] = color;
       return { ...state };
