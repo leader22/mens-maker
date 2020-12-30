@@ -24,8 +24,6 @@
   };
 </script>
 
-<h1>Mens Maker</h1>
-
 <main>
   <Renderer
     {partsSettings}
@@ -47,15 +45,7 @@
 </main>
 
 <style>
-  h1 {
-    text-align: center;
-    margin: 0;
-  }
-
   main {
-    width: auto;
-    margin: 0 2%;
-    background-color: #fff;
     padding: 2%;
   }
 

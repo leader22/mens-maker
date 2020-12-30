@@ -8,39 +8,52 @@
 </script>
 
 {#each Object.entries(manifest) as [partsName, parts]}
-  <section>
-    <h2>{partsLabels[partsName]}</h2>
-    <div>
-      <select
-        value={$partsSettings[partsName]}
-        on:change={({ currentTarget: { value } }) => setItem(partsName, value || null)}
-        on:blur={({ currentTarget: { value } }) => setItem(partsName, value || null)}
-      >
-        {#if partsDisplaySettings[partsName].nullable}
+  <div class="selector">
+    <div class="label">{partsLabels[partsName]}</div>
+    <select
+      value={$partsSettings[partsName]}
+      on:change={({ currentTarget: { value } }) => setItem(partsName, value || null)}
+      on:blur={({ currentTarget: { value } }) => setItem(partsName, value || null)}
+      disabled={Object.keys(parts).length < 2}
+    >
+      {#if partsDisplaySettings[partsName].nullable}
         <option value="">{partsLabels["off"]}</option>
-        {/if}
-        {#each Object.entries(parts) as [itemId, item]}
-          <option value={itemId}>{partsLabels[`${partsName}/${itemId}`]}</option>
-        {/each}
-      </select>
+      {/if}
+      {#each Object.entries(parts) as [itemId, item]}
+        <option value={itemId}>{partsLabels[`${partsName}/${itemId}`]}</option>
+      {/each}
+    </select>
 
-      <div>
-        {#each Object.entries($colorsSettings[partsName]) as [colorId, color]}
-          <input
-            type="color"
-            value={color}
-            on:input={
-              ({ currentTarget: { value } }) => setColor(partsName, colorId, value)
-            }
-          />
-        {/each}
-      </div>
+    <div>
+      {#each Object.entries($colorsSettings[partsName]) as [colorId, color]}
+        <input
+          type="color"
+          value={color}
+          on:input={
+          ({ currentTarget: { value } }) => setColor(partsName, colorId, value)
+          }
+        />
+      {/each}
     </div>
-  </section>
+  </div>
 {/each}
 
 <style>
-  h2 {
-    margin: 0;
+  .selector {
+    display: grid;
+    grid-template-columns: 40px 25% 1fr;
+    align-items: center;
+  }
+
+  .selector + .selector {
+    margin-top: 8px;
+  }
+
+  .label {
+    text-align: center;
+  }
+
+  select {
+    margin: 0 8px;
   }
 </style>

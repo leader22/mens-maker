@@ -53,8 +53,8 @@
 <style>
   .stage {
     position: relative;
-    height: 20vh;
-    width: 20vh;
+    height: 40vh;
+    width: 40vh;
     margin: 0 auto;
   }
 
