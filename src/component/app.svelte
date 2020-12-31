@@ -1,7 +1,7 @@
 <script>
   import manifest from "../manifest.js";
   import { createStore } from "../state.js";
-  import { uniteSvgs, svgToPng, download } from "../utils.js";
+  import { mergeSvgs, svgToPng, download } from "../utils.js";
   import Renderer from "./renderer.svelte";
   import Controller from "./controller.svelte";
 
@@ -17,8 +17,10 @@
   const downloadPng = async () => {
     if (svgContainer.current === null) return;
 
-    const $parts = svgContainer.current.querySelectorAll("svg");
-    const $svg = uniteSvgs($parts, size);
+    const $svg = mergeSvgs(
+      svgContainer.current.querySelectorAll("svg"),
+      size
+    );
     const png = await svgToPng($svg, size);
     download(png, "your-man.png");
   };
