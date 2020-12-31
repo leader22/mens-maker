@@ -38,7 +38,7 @@
 
 <div class="stage">
   {#await svgsPromise}
-    <div>Loading...</div>
+    <div>TODO: Loading...</div>
   {:then svgs}
     <div bind:this={svgContainer.current}>
       {#each svgs as { svg, partsName }}
@@ -53,14 +53,11 @@
 <style>
   .stage {
     position: relative;
-    height: 40vh;
-    width: 40vh;
-    margin: 0 auto;
   }
 
   :global(.stage svg) {
     position: absolute;
-    height: 100%;
-    width: auto;
+    width: 100%;
+    height: auto;
   }
 </style>

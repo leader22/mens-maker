@@ -26,6 +26,10 @@
   };
 </script>
 
+<header>
+  <h1>メンズメーカー</h1>
+</header>
+
 <main>
   <Renderer
     {partsSettings}
@@ -33,25 +37,60 @@
     {svgContainer}
   />
 
-  <div class="center">
-    <button on:click={downloadPng}>DOWNLOAD</button>
-  </div>
+  <div class="tools">
+    <Controller
+      {manifest}
+      {partsSettings}
+      {colorsSettings}
+      {setItem}
+      {setColor}
+    />
 
-  <Controller
-    {manifest}
-    {partsSettings}
-    {colorsSettings}
-    {setItem}
-    {setColor}
-  />
+    <div class="download">
+      <button on:click={downloadPng}>DOWNLOAD</button>
+    </div>
+  </div>
 </main>
 
 <style>
+  header,
   main {
-    padding: 2%;
+    box-sizing: border-box;
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 0 16px;
   }
 
-  .center {
+  header h1 {
+    margin: 8px auto;
+    font-size: 1.3rem;
+  }
+
+  main {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 16px;
+  }
+
+  @media screen and (max-width: 480px) {
+    header h1 {
+    font-size: 1.1rem;
+    }
+
+    main {
+      grid-template-columns: 1fr;
+    }
+
+    .tools {
+      position: fixed;
+      left: 16px;
+      right: 16px;
+      bottom: 0;
+    }
+  }
+
+  .download {
+    padding: 16px 0;
     text-align: center;
   }
 </style>
