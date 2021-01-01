@@ -21,8 +21,8 @@
       svgContainer.current.querySelectorAll("svg"),
       size
     );
-    const png = await svgToPng($svg, size);
-    download(png, "your-man.png");
+    const pngAsUrl = await svgToPng($svg, size);
+    download(pngAsUrl, "your-man.png");
   };
 </script>
 
@@ -46,9 +46,9 @@
       {setColor}
     />
 
-    <div class="download">
-      <button on:click={downloadPng}>DOWNLOAD</button>
-    </div>
+    <a class="download" href="#" on:click|preventDefault={downloadPng}>
+      これで完成
+    </a>
   </div>
 </main>
 
@@ -74,7 +74,7 @@
 
   @media screen and (max-width: 480px) {
     header h1 {
-    font-size: 1.1rem;
+      font-size: 1.1rem;
     }
 
     main {
@@ -90,7 +90,14 @@
   }
 
   .download {
-    padding: 16px 0;
     text-align: center;
+    display: block;
+    width: 160px;
+    text-decoration: none;
+    color: inherit;
+    font-size: 1.2rem;
+    background-color: #2d69d6;
+    padding: 12px 36px;
+    margin: 40px auto;
   }
 </style>
