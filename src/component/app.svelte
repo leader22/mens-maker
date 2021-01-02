@@ -28,6 +28,10 @@
 
 <header>
   <h1>メンズメーカー</h1>
+
+  <a href="." on:click|preventDefault={downloadPng}>
+    これで完成
+  </a>
 </header>
 
 <main>
@@ -45,36 +49,49 @@
       {setItem}
       {setColor}
     />
-
-    <a class="download" href="#" on:click|preventDefault={downloadPng}>
-      これで完成
-    </a>
   </div>
 </main>
 
 <style>
-  header,
-  main {
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     box-sizing: border-box;
     max-width: 1024px;
     margin: 0 auto;
-    padding: 0 16px;
   }
 
   header h1 {
-    margin: 8px auto;
+    margin: 0;
+    padding: 8px 0;
     font-size: 1.3rem;
   }
 
+  header a {
+    text-decoration: none;
+    color: inherit;
+    background-color: #2d69d6;
+    padding: 4px 8px;
+  }
+
   main {
+    max-width: 1024px;
+    margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr 350px;
     gap: 16px;
   }
 
   @media screen and (max-width: 480px) {
+    header {
+      padding: 0 8px;
+    }
     header h1 {
       font-size: 1.1rem;
+    }
+    header a {
+      font-size: .9rem;
     }
 
     main {
@@ -87,17 +104,5 @@
       right: 16px;
       bottom: 0;
     }
-  }
-
-  .download {
-    text-align: center;
-    display: block;
-    width: 160px;
-    text-decoration: none;
-    color: inherit;
-    font-size: 1.2rem;
-    background-color: #2d69d6;
-    padding: 12px 36px;
-    margin: 40px auto;
   }
 </style>
