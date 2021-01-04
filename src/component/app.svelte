@@ -53,13 +53,16 @@
 </main>
 
 <style>
+  header, main {
+    max-width: 1024px;
+    margin: 0 auto;
+  }
+
   header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     box-sizing: border-box;
-    max-width: 1024px;
-    margin: 0 auto;
   }
 
   header h1 {
@@ -76,8 +79,6 @@
   }
 
   main {
-    max-width: 1024px;
-    margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr 350px;
     gap: 16px;
@@ -100,9 +101,13 @@
 
     .tools {
       position: fixed;
-      left: 16px;
-      right: 16px;
+      left: 0;
+      right: 0;
       bottom: 0;
+      padding: 8px;
+      overflow: scroll;
+      height: 35vh;
+      background-color: rgba(0, 0, 0, .5);
     }
   }
 </style>
