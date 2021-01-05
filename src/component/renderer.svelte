@@ -36,7 +36,7 @@
   };
 </script>
 
-<div class="stage">
+<div class="stage" on:touchmove|preventDefault={() => {}}>
   {#await svgsPromise}
     <div>TODO: Loading...</div>
   {:then svgs}
