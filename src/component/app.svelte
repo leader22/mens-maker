@@ -87,12 +87,13 @@
   @media screen and (max-width: 480px) {
     header {
       padding: 0 8px;
+      height: 40px;
     }
     header h1 {
       font-size: 1.1rem;
     }
     header a {
-      font-size: .9rem;
+      font-size: .8rem;
     }
 
     main {
@@ -106,8 +107,8 @@
       bottom: 0;
       padding: 8px;
       overflow: scroll;
-      height: 35vh;
-      background-color: rgba(0, 0, 0, .5);
+      height: 30vh;
+      background-color: rgba(0, 0, 0, .2);
     }
   }
 </style>

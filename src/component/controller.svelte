@@ -51,6 +51,7 @@
 
   .label {
     text-align: center;
+    text-shadow: 0 0 1px #000;
   }
 
   select {
