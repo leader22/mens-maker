@@ -65,8 +65,8 @@ const parseSvg = (svgStr, debugLabel) => {
 
   // then find path.cls to change color
   const validClassNames = new Set();
-  // almost all are path, 0_bg is rect
-  $svg.find("path, rect").each((_, el) => {
+  // almost all are path, 0_bg has rect, polygon
+  $svg.find("path, rect, polygon").each((_, el) => {
     const $el = $(el);
 
     const cls = $el.attr("class");

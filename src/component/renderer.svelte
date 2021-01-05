@@ -22,7 +22,7 @@
   const colorize = ($el, colorsSettings) => {
     const applyColors = ($svgWrapper, settings) => {
       for (const [cls, color] of Object.entries(settings)) {
-        for (const $el of $svgWrapper.querySelectorAll(`path.${cls}, rect.${cls}`)) {
+        for (const $el of $svgWrapper.querySelectorAll(`.${cls}`)) {
           $el.style.fill = color;
         }
       }
