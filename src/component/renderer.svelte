@@ -38,7 +38,7 @@
 
 <div class="stage" on:touchmove|preventDefault={() => {}}>
   {#await svgsPromise}
-    <div>TODO: Loading...</div>
+    <div class="loading">Loading...</div>
   {:then svgs}
     <div bind:this={svgContainer.current}>
       {#each svgs as { svg, partsName }}
@@ -53,6 +53,12 @@
 <style>
   .stage {
     position: relative;
+  }
+
+  .loading {
+    text-align: center;
+    font-size: 1.5rem;
+    padding: 30%;
   }
 
   :global(.stage svg) {
