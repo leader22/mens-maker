@@ -1,5 +1,9 @@
 <script>
-  import { partsDisplaySettings, partsLabels } from "../constants.js";
+  import {
+    partsDisplaySettings,
+    partsLabels,
+    partsOrder,
+  } from "../constants.js";
   export let manifest;
   export let partsSettings;
   export let colorsSettings;
@@ -7,7 +11,9 @@
   export let setColor;
 </script>
 
-{#each Object.entries(manifest) as [partsName, parts]}
+{#each Object.entries(manifest)
+  .sort(([a], [b]) => partsOrder[a] > partsOrder[b] ? 1 : -1)
+  as [partsName, parts]}
   <div class="selector">
     <div class="label">{partsLabels[partsName]}</div>
     <select

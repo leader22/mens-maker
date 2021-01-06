@@ -94,3 +94,15 @@ export const partsLabels = {
   "8_item/6": "ほくろB",
   "8_item/7": "傷",
 };
+
+export const partsOrder = {
+  "7_hair": 1,
+  "8_item": 2,
+  "4_eyes": 3,
+  "6_eyebrows": 4,
+  "3_mouth": 5,
+  "5_beard": 6,
+  "1_face": 7,
+  "2_clothes": 8,
+  "0_bg": 9,
+}
