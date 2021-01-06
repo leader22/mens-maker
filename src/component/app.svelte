@@ -1,35 +1,24 @@
 <script>
   import manifest from "../manifest.js";
   import { createStore } from "../state.js";
-  import { mergeSvgs, svgToPng, download } from "../utils.js";
   import Renderer from "./renderer.svelte";
   import Controller from "./controller.svelte";
+  import Modal from "./modal.svelte";
 
   const {
     partsSettings,
     colorsSettings,
+    svgContainer,
+    finished,
     setItem,
     setColor,
+    toggleFinish,
   } = createStore(manifest);
-
-  const size = 500;
-  const svgContainer = { current: null };
-  const downloadPng = async () => {
-    if (svgContainer.current === null) return;
-
-    const $svg = mergeSvgs(
-      svgContainer.current.querySelectorAll("svg"),
-      size
-    );
-    const pngAsUrl = await svgToPng($svg, size);
-    download(pngAsUrl, "your-man.png");
-  };
 </script>
 
 <header>
   <h1>メンズメーカー</h1>
-
-  <a href="." on:click|preventDefault={downloadPng}>
+  <a href="." on:click|preventDefault={toggleFinish}>
     これで完成
   </a>
 </header>
@@ -51,6 +40,12 @@
     />
   </div>
 </main>
+
+<Modal
+  {svgContainer}
+  {finished}
+  {toggleFinish}
+/>
 
 <style>
   header, main {

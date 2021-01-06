@@ -13,6 +13,7 @@ export const createStore = (manifest) => {
     "7_hair": "1",
     "8_item": "1",
   });
+
   const colorsSettings = writable({
     "0_bg": { ...manifest["0_bg"]["1"] },
     "1_face": { ...manifest["1_face"]["1"] },
@@ -48,13 +49,23 @@ export const createStore = (manifest) => {
     });
   };
 
+  const svgContainer = { current: null };
+
+  const finished = writable(false);
+  const toggleFinish = () => finished.update(b => !b);
+
   return {
     // states
     partsSettings,
     colorsSettings,
+    finished,
+
+    // refs
+    svgContainer,
 
     // actions
     setItem,
     setColor,
+    toggleFinish,
   };
 };
