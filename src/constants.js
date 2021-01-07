@@ -108,4 +108,4 @@ export const partsOrder = {
   "0_bg": 9,
 }
 
-export const shareText = `#メンズメーカー でイケメンつくろう！ ${location.origin}`
+export const shareText = `きみも #メンズジェネレーター でキャラメイクしよう！ ${location.origin}`

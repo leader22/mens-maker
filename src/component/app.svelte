@@ -17,7 +17,7 @@
 </script>
 
 <header>
-  <h1>メンズメーカー</h1>
+  <h1>メンズジェネレーター</h1>
   <a href="." on:click|preventDefault={toggleFinish}>
     これで完成
   </a>
