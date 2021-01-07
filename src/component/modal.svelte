@@ -1,5 +1,6 @@
 <script>
   import { fly, fade } from "svelte/transition";
+  import { shareText } from "../constants.js";
   import { mergeSvgs, svgToPng, download } from "../utils.js";
 
   export let svgContainer;
@@ -27,6 +28,7 @@
   <div
     class="modal"
     transition:fade
+    on:touchmove|preventDefault={() => {}}
   >
     <nav>
       <a href="." on:click|preventDefault={toggleFinish}>もどる</a>
@@ -38,14 +40,17 @@
       {#await imgPromise}
         <div class="loading">Loading...</div>
       {:then src}
-        <img src={src} alt="" width="70%" />
+        <img src={src} alt="" width="350" height="350" />
       {/await}
 
-      <p>画像を右クリック or 長押しで保存</p>
+      <p>画像を右クリック or 長押しから保存</p>
       <p>もしくは</p>
       <a href="." on:click|preventDefault={downloadPng}>ファイルとして保存</a>
       <hr />
-      <a href="." on:click|preventDefault={() => alert("TODO")}>このサイトをシェア</a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://twitter.com/intent/tweet?text={encodeURIComponent(shareText)}">このサイトをシェア</a>
     </div>
   </div>
 {/if}
@@ -57,7 +62,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, .8);
+    background-color: rgba(0, 0, 0, .9);
     padding: 8px;
     box-sizing: border-box;
   }
@@ -82,6 +87,11 @@
 
   .content {
     text-align: center;
+  }
+
+  .content img {
+    width: auto;
+    height: 50vh;
   }
 
   .content p {

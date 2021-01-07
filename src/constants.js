@@ -39,6 +39,7 @@ export const partsLabels = {
   "6_eyebrows": "眉毛",
   "7_hair": "髪",
   "8_item": "小物",
+
   "off": "なし",
   "0_bg/1": "無地",
   "0_bg/2": "ストライプ",
@@ -106,3 +107,5 @@ export const partsOrder = {
   "2_clothes": 8,
   "0_bg": 9,
 }
+
+export const shareText = `#メンズメーカー でイケメンつくろう！ ${location.origin}`
