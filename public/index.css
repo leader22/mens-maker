@@ -1,0 +1,52 @@
+.page-index {
+  text-align: center;
+}
+
+.page-index h1 {
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+}
+
+.page-index p {
+  margin: 0 auto;
+}
+
+.page-index h2 {
+  font-size: 1.3rem;
+  margin-bottom: 8px;
+}
+
+.page-index ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: .8rem;
+}
+
+.page-index a.btn {
+  display: block;
+  width: 160px;
+  text-decoration: none;
+  color: inherit;
+  font-size: 1.2rem;
+  background-color: #2d69d6;
+  padding: 12px 36px;
+  margin: 40px auto;
+}
+
+.page-index img {
+  max-width: 100%;
+  height: auto;
+}
+
+.page-index .ads {
+  margin: 16px auto;
+}
+
+.page-index .authors {
+  width: 320px;
+  margin: 8px auto;
+}
+.page-index .authors a {
+  color: inherit;
+}
